@@ -1,0 +1,542 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #141414; /* Netflix Dark Background */
+    color: white;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* --- SPLASH SCREEN STYLES --- */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.splash-logo {
+    font-size: 5rem;
+    font-weight: 800;
+    color: #E50914; /* Netflix Red */
+    letter-spacing: 8px;
+    animation: splashZoomFade 3.5s ease-out forwards;
+}
+
+@keyframes splashZoomFade {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* --- LOGIN SCREEN STYLES --- */
+.login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 150;
+}
+
+.login-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+        url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=1200&h=800&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.login-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 8px;
+    padding: 60px 40px;
+    min-width: 350px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+}
+
+.login-logo {
+    width: 150px;
+    margin-bottom: 30px;
+}
+
+.login-box h2 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.google-signin-btn {
+    width: 100%;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+    margin-bottom: 20px;
+}
+
+.google-signin-btn:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.02);
+}
+
+.login-text {
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+/* --- PROFILE SCREEN STYLES --- */
+.profile-screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #141414;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.profile-screen.hidden {
+    display: none;
+}
+
+.profile-container h1 {
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+.profile-list {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.profile-card {
+    cursor: pointer;
+    group: hover;
+}
+
+.profile-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 4px;
+    border: 3px solid transparent;
+}
+
+.profile-card:hover img {
+    border: 3px solid white; /* Highlight on hover */
+}
+
+.profile-card span {
+    display: block;
+    margin-top: 10px;
+    color: #808080;
+    font-size: 1.2rem;
+}
+
+.profile-card:hover span {
+    color: white;
+}
+
+.manage-btn {
+    margin-top: 3rem;
+    background: transparent;
+    border: 1px solid #808080;
+    color: #808080;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.manage-btn:hover {
+    color: white;
+    border-color: white;
+}
+
+/* --- HOME SCREEN STYLES --- */
+.hidden {
+    display: none;
+}
+
+/* Nav */
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111;
+    z-index: 50;
+}
+.nav_logo { width: 90px; margin-left: 20px; }
+
+/* Nav Avatar & Profile Dropdown */
+.nav_avatar_container {
+    position: relative;
+    margin-right: 20px;
+}
+
+.nav_avatar {
+    width: 35px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #111;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 15px;
+    min-width: 200px;
+    z-index: 200;
+}
+
+.dropdown-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #404040;
+    margin-bottom: 15px;
+}
+
+.dropdown-user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.dropdown-user span {
+    color: #e5e5e5;
+    font-size: 1rem;
+}
+
+.signout-btn {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #E50914;
+    color: #E50914;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.signout-btn:hover {
+    background-color: #E50914;
+    color: white;
+}
+
+.dropdown-btn {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #404040;
+    color: #e5e5e5;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: all 0.2s;
+}
+
+.dropdown-btn:hover {
+    background-color: #404040;
+    border-color: #e5e5e5;
+}
+
+/* --- SEARCH BAR STYLES --- */
+.search-bar-container {
+    position: fixed;
+    top: 70px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 40;
+    background-color: rgba(20, 20, 20, 0.9);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #404040;
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+}
+
+.search-input::placeholder {
+    color: #808080;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #E50914;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.genre-filter {
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #404040;
+    border-radius: 4px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.genre-filter:focus {
+    outline: none;
+    border-color: #E50914;
+}
+
+/* --- MODAL STYLES --- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 500;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: #222;
+    border-radius: 8px;
+    padding: 40px;
+    min-width: 400px;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+}
+
+.modal-content.modal-large {
+    min-width: 600px;
+    max-width: 800px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #e5e5e5;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #E50914;
+}
+
+.modal-content h2 {
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #e5e5e5;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #404040;
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #E50914;
+}
+
+.modal-btn {
+    width: 100%;
+    background-color: #E50914;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modal-btn:hover {
+    background-color: #c90812;
+    transform: scale(1.02);
+}
+
+/* Watch History List */
+.watch-history-list {
+    display: grid;
+    gap: 15px;
+}
+
+.watch-history-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid #404040;
+    border-radius: 4px;
+    padding: 15px;
+    color: #e5e5e5;
+}
+
+.watch-history-item-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.watch-history-item-date {
+    font-size: 0.85rem;
+    color: #808080;
+}
+
+/* Banner */
+.banner {
+    height: 448px;
+    color: white;
+    object-fit: contain;
+    background-image: url('https://image.tmdb.org/t/p/original/56v2KjBlU4XaOv9rVYkJu64Mdbb.jpg'); /* Stranger Things BG */
+    background-size: cover;
+    background-position: center top;
+}
+.banner_contents { margin-left: 30px; padding-top: 140px; height: 190px; }
+.banner_title { font-size: 3rem; font-weight: 800; padding-bottom: 0.3rem; }
+.banner_description { width: 45rem; line-height: 1.3; padding-top: 1rem; font-size: 0.8rem; max-width: 360px; text-shadow: 2px 2px 4px #000; }
+.banner_button { cursor: pointer; color: #fff; outline: none; border: none; font-weight: 700; border-radius: 0.2vw; padding: 0.5rem 2rem; margin-right: 1rem; background-color: rgba(51,51,51,0.5); }
+.banner_button:hover { color: #000; background-color: #e6e6e6; transition: all 0.2s; }
+.banner--fadeBottom { height: 7.4rem; background-image: linear-gradient(180deg, transparent, rgba(37,37,37,0.61), #141414); }
+
+/* Rows */
+.row { margin-left: 20px; margin-top: 20px; }
+.row_posters { display: flex; overflow-y: hidden; overflow-x: scroll; padding: 20px; }
+.row_posters::-webkit-scrollbar { display: none; }
+.row_poster { width: 100%; max-height: 150px; object-fit: contain; margin-right: 10px; transition: transform 450ms; cursor: pointer; border-radius: 4px; }
+.row_poster:hover { transform: scale(1.09); }
+/* Video Player Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Piche ka background dark */
+    z-index: 1000; /* Sabse upar dikhe */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none; /* Chupane ke liye class */
+}
+
+.video-container {
+    position: relative;
+    width: 80%;
+    height: 70%;
+    background: #000;
+}
+
+.close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}

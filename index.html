@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Netflix Login Screen -->
+    <div class="login-screen" id="login-screen">
+        <div class="login-bg"></div>
+        <div class="login-container">
+            <div class="login-box">
+                <img class="login-logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo">
+                <h2>Sign In</h2>
+                <button class="google-signin-btn" onclick="signInWithGoogle()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="19" cy="5" r="1"></circle>
+                        <circle cx="5" cy="19" r="1"></circle>
+                        <path d="M12 12v8M12 4v2M4 12h2M18 12h2"></path>
+                    </svg>
+                    Sign In with Google
+                </button>
+                <p class="login-text">Secure sign-in powered by Google</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Netflix Splash Screen -->
+    <div class="splash-screen hidden" id="splash-screen">
+        <div class="splash-logo">NETFLIX</div>
+    </div>
+
+    <div class="profile-screen hidden" id="profile-screen">
+        <div class="profile-container">
+            <h1>Who's watching?</h1>
+            <div class="profile-list" id="profile-list">
+                </div>
+            <button class="manage-btn">Manage Profiles</button>
+        </div>
+    </div>
+
+    <div class="home-screen hidden" id="home-screen">
+        
+        <div class="nav" id="nav">
+            <img class="nav_logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo">
+            <div class="nav_avatar_container">
+                <img class="nav_avatar" id="current-user-avatar" src="" alt="User" onclick="toggleProfileMenu()">
+                <div class="profile-dropdown hidden" id="profile-dropdown">
+                    <div class="dropdown-user">
+                        <img id="dropdown-avatar" src="" alt="User">
+                        <span id="dropdown-username"></span>
+                    </div>
+                    <button class="dropdown-btn" onclick="openProfileModal()">Edit Profile</button>
+                    <button class="dropdown-btn" onclick="openWatchHistory()">Watch History</button>
+                    <button class="signout-btn" onclick="signOut()">Sign Out</button>
+                </div>
+            </div>
+        </div>
+
+        <header class="banner">
+            <div class="banner_contents">
+                <h1 class="banner_title">Stranger Things</h1>
+                <div class="banner_buttons">
+                    <button class="banner_button">Play</button>
+                    <button class="banner_button">My List</button>
+                </div>
+                <h1 class="banner_description">
+                    When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.
+                </h1>
+            </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-bar-container">
+            <input type="text" id="search-input" class="search-input" placeholder="Search movies...">
+            <select id="genre-filter" class="genre-filter">
+                <option value="">All Genres</option>
+                <option value="28">Action</option>
+                <option value="35">Comedy</option>
+                <option value="18">Drama</option>
+                <option value="27">Horror</option>
+                <option value="10749">Romance</option>
+                <option value="878">Sci-Fi</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <h2>Trending Now</h2>
+            <div class="row_posters" id="row-trending"></div>
+        </div>
+
+        <div class="row">
+            <h2>Action Movies</h2>
+            <div class="row_posters" id="row-action"></div>
+        </div>
+
+        <!-- My List Section -->
+        <div class="row">
+            <h2>My List</h2>
+            <div class="row_posters" id="row-mylist"></div>
+        </div>
+    </div>
+<div id="video-overlay" class="overlay hidden">
+    <div class="video-container">
+        <button class="close-btn" onclick="closeVideo()">Close X</button>
+        <iframe id="youtube-player" width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+</div>
+
+<!-- Profile Edit Modal -->
+<div id="profile-modal" class="modal hidden">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeProfileModal()">&times;</button>
+        <h2>Edit Profile</h2>
+        <div class="form-group">
+            <label>Display Name:</label>
+            <input type="text" id="edit-name" class="form-input" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+            <label>Avatar URL:</label>
+            <input type="text" id="edit-avatar" class="form-input" placeholder="Enter avatar image URL">
+        </div>
+        <button class="modal-btn" onclick="saveProfileChanges()">Save Changes</button>
+    </div>
+</div>
+
+<!-- Watch History Modal -->
+<div id="watch-history-modal" class="modal hidden">
+    <div class="modal-content modal-large">
+        <button class="close-modal" onclick="closeWatchHistory()">&times;</button>
+        <h2>Watch History</h2>
+        <div id="watch-history-list" class="watch-history-list"></div>
+    </div>
+</div>
+
+<!-- Firebase SDK v8 (Global firebase object - Works perfectly) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script src="script.js"></script>
+</body>
+</html>
