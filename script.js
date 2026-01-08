@@ -207,6 +207,13 @@ async function playTrailer(movieId) {
         const url = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`;
         const response = await fetch(url);
         const data = await response.json();
+        
+        // Check if results exist before using find()
+        if (!data.results || data.results.length === 0) {
+            playTvTrailer(movieId);
+            return;
+        }
+        
         const trailer = data.results.find(video => video.type === "Trailer" && video.site === "YouTube");
 
         if (trailer) {
@@ -221,6 +228,7 @@ async function playTrailer(movieId) {
         }
     } catch (error) {
         console.error("Error playing video:", error);
+        alert("Trailer not available for this movie");
     }
 }
 
